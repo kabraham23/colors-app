@@ -15,17 +15,28 @@ const PaletteWrapper = () => {
   return <Palette palette={palette} />;
 };
 
-export default function App() {
-  return (
+export default class App extends Component {
+  render() {
+    return(
       <div className="App">
+        <>
           <Routes>
               <Route
                   index
                   path="/"
-                  element={<h1>Homepage</h1>}
-              />
-              <Route path="/palette/:id" element={<PaletteWrapper />} />
+                  element={(routeProps) => (
+                    <>
+                      <Palette
+                        palette={generatePalette(
+                          this.findPalette(routeProps.match.params.id)
+                        )} />
+                        </>
+                      )}  
+                    />
+              <Route path="/palette/:id" element={<PaletteWrapper />} />     
           </Routes>
+        </>
       </div>
-  );
+    )
+  }
 }
