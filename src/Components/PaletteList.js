@@ -7,8 +7,8 @@ export default class PaletteList extends Component {
     return (
       <div className='PaletteList'>
         <h1>List</h1>
-        {palettes?.map(palette => (
-            <p>
+        {palettes.map((palette, index) => (
+            <p key={index}>
             <Link to={`/palette/${palette.id}`}>{palette.paletteName}</Link>
             </p>
         ))}
