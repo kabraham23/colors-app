@@ -22,6 +22,7 @@ export default function App() {
           <Routes>
               <Route path="/" element={<PaletteList palettes={seedColors} /> } />
               <Route path="/palette/:id" element={<PaletteWrapper />} />     
+              <Route path="/palette/:paletteId/:colorId" element={}/>
           </Routes>
         </>
       </div>
