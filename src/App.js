@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Route, Routes, useParams } from 'react-router-dom';
 import Palette from "./Components/Palette";
 import PaletteList from './Components/PaletteList';
@@ -16,6 +16,12 @@ const PaletteWrapper = () => {
   return <Palette palette={palette} />;
 };
 
+const ColorWrapper = () => {
+  const { id } = useParams();
+  const palette = generatePalette(findPalette(id));
+  return <SingleColorPalette palette={palette} />;
+}
+
 export default function App() {
     return(
       <div className="App">
@@ -23,7 +29,7 @@ export default function App() {
           <Routes>
               <Route path="/" element={<PaletteList palettes={seedColors} /> } />
               <Route path="/palette/:id" element={<PaletteWrapper />} />     
-              <Route path="/palette/:paletteId/:colorId" element={<SingleColorPalette />}/>
+              <Route path="/palette/:id/:colorId" element={<ColorWrapper />}/>
           </Routes>
         </>
       </div>
