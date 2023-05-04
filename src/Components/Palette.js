@@ -3,6 +3,7 @@ import ColorBox from './ColorBox';
 import NavBar from './NavBar';
 import './CSS/ColorBox.css';
 import './CSS/Palette.css';
+import PaletteFooter from './PaletteFooter';
 
 
 export default class Palette extends Component {
@@ -27,14 +28,11 @@ export default class Palette extends Component {
     ));
     return (
       <div className='Palette'>
-       <NavBar level={level} changeLevel={this.changeLevel} handleChange={this.changeFormat} />
+       <NavBar level={level} changeLevel={this.changeLevel} handleChange={this.changeFormat} showingAllColors={true} />
         <div className='Palette-colors'>
             {colorBoxes}
         </div>
-        <footer className='Palette-footer'>
-          {paletteName}
-          <span className='emoji'>{emoji}</span>
-        </footer>
+        <PaletteFooter paletteName={paletteName} emoji={emoji} />
       </div>
     )
   }
