@@ -17,10 +17,10 @@ const PaletteWrapper = () => {
 };
 
 const ColorWrapper = () => {
-  const { id } = useParams();
+  const { id, colorId } = useParams();
   const palette = generatePalette(findPalette(id));
-  return <SingleColorPalette palette={palette} />;
-}
+  return <SingleColorPalette palette={palette} colorId={colorId} />;
+};
 
 export default function App() {
     return(
