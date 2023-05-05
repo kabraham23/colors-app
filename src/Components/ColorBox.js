@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import "./CSS/ColorBox.css"
 import { Link } from 'react-router-dom';
 import {CopyToClipboard} from "react-copy-to-clipboard";
+import chroma from 'chroma-js';
 
 export default class colorBox extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ export default class colorBox extends Component {
   render() {
     const { name, background, paletteId, id, showLink } = this.props;
     const {copied} = this.state
+    const isDarkColor = chroma(background).luminance() <= 0.07;
     return (
       <CopyToClipboard text={background} onCopy={this.changeCopyState}>
       <div style={{background}} className='ColorBox'>
@@ -27,7 +29,7 @@ export default class colorBox extends Component {
       </div>
         <div className='copy-container'>
           <div className='box-content'>
-            <span>{name}</span>
+            <span className={isDarkColor && 'light-text'}>{name}</span>
           </div>
           <button className='copy-button'>Copy</button>
         </div>

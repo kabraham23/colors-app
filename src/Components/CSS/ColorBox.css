@@ -56,9 +56,14 @@
     text-transform: uppercase;
     font-size: 12px;
 }
-
+.light-text {
+    color: white;
+}
+.dark-text {
+    color: black;
+}
 .see-more {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.3);
     position: absolute;
     border: none;
     right: 0px;
