@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { styled, useTheme } from '@mui/material/styles';
 import { Button, Typography } from "@material-ui/core";
 import Box from '@mui/material/Box';
@@ -60,18 +60,35 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-export default function NewPalette() {
-    const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+class NewPalette extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            open: true,
+            currentColor: 'teal',
+            setOpen: false
+        };
+        this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
+        this.handleDrawerClose = this.handleDrawerClose.bind(this);
+    }
 
-  const handleDrawerOpen = () => {
+    theme = useTheme();
+
+
+//   const [open, setOpen] = React.useState(false);
+
+  handleDrawerOpen = () => {
     setOpen(true);
   };
 
-  const handleDrawerClose = () => {
+  handleDrawerClose = () => {
     setOpen(false);
   };
 
+  updateCurrentColor = (newColor) => {
+    console.log(newColor)
+  }
+render() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -111,7 +128,7 @@ export default function NewPalette() {
             <Button variant="contained" color='secondary'>Clear Palette</Button>
             <Button variant="contained" color="primary">Random Color</Button>
         </div>
-        <ChromePicker onChangeComplete={newColor => console.log(newColor)} />
+        <ChromePicker color={this.state.currentColor} onChangeComplete={updateCurrentColor()} />
         <Button variant="contained" color='primary'>Add Color</Button>
         <Divider />
        
@@ -122,4 +139,5 @@ export default function NewPalette() {
       </Main>
     </Box>
   );
+    }
 }
