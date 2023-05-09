@@ -62,20 +62,16 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function NewPalette(props) {
 
-   const theme = useTheme();
+    const theme = useTheme();
+    const [open, setOpen] = React.useState(false);
 
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
 
-  const [open, setOpen] = React.useState(false);
-  const [currentColor, updateCurrentColor] = React.useState()
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
+    const handleDrawerClose = () => {
+        setOpen(false);
+    };
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -117,7 +113,12 @@ export default function NewPalette(props) {
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        
+        {/* <ul>
+            {colors.map(color => (
+                <li>{color}</li>
+            ))
+            }
+        </ul> */}
       </Main>
     </Box>
   );
