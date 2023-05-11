@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { styled, useTheme } from '@mui/material/styles';
 import NewColorPicker from "./NewColorPicker";
 import Box from '@mui/material/Box';
@@ -64,6 +64,8 @@ export default function NewPalette(props) {
 
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const [currentColor, setCurrentColor] = React.useState('#fff');
+    const [colors, setColors] = React.useState([]);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -72,6 +74,19 @@ export default function NewPalette(props) {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+    const handleChangeComplete = (newColor) => {
+        setCurrentColor(newColor.hex)
+    }
+
+    const addNewColor = () => {
+        setColors([...colors, currentColor])
+    }
+
+    useEffect(() => {
+        console.log(colors)
+    }, [colors])
+
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -107,18 +122,18 @@ export default function NewPalette(props) {
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>
-        <NewColorPicker />
+        <NewColorPicker currentColor={currentColor} colors={colors} handleChangeComplete={(newColor) => handleChangeComplete(newColor)} addNewColor={addNewColor} />
         <Divider />
        
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        {/* <ul>
+        <ul>
             {colors.map(color => (
                 <li>{color}</li>
             ))
             }
-        </ul> */}
+        </ul>
       </Main>
     </Box>
   );
