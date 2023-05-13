@@ -19,6 +19,8 @@ const drawerWidth = 400;
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     flexGrow: 1,
+    height: "calc(100vh - 64px)",
+    marginTop: '3%',
     padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
@@ -33,6 +35,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
       marginLeft: 0,
     }),
   }),
+  
 );
 
 const AppBar = styled(MuiAppBar, {
@@ -125,14 +128,11 @@ export default function NewPalette(props) {
         </DrawerHeader>
         <NewColorPicker currentColor={currentColor} colors={colors} handleChangeComplete={(newColor) => handleChangeComplete(newColor)} addNewColor={addNewColor} />
         <Divider />
-       
       </Drawer>
       <Main open={open}>
-        <div>
             {colors.map(color => (
                 <DraggableColorBox color={color} />
             ))}
-        </div>
       </Main>
     </Box>
   );
