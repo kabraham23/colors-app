@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import { styled, useTheme } from '@mui/material/styles';
 import NewColorPicker from "./NewColorPicker";
+import DraggableColorBox from "./DraggableColorBox";
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -127,13 +128,11 @@ export default function NewPalette(props) {
        
       </Drawer>
       <Main open={open}>
-        <DrawerHeader />
-        <ul>
+        <div>
             {colors.map(color => (
-                <li>{color}</li>
-            ))
-            }
-        </ul>
+                <DraggableColorBox color={color} />
+            ))}
+        </div>
       </Main>
     </Box>
   );
