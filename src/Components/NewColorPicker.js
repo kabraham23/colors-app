@@ -11,7 +11,7 @@ class NewColorPicker extends Component {
             <Typography variant="h4">Design Your Palette</Typography>
             <ChromePicker color={ this.props.currentColor } onChangeComplete={ this.props.handleChangeComplete } />
             <ValidatorForm onSubmit={this.props.addNewColor}>
-                <TextValidator value={this.props.newName} onChange={this.props.setNewColor} />
+                <TextValidator value={this.props.newName.newName} onChange={this.props.addNewName} />
             </ValidatorForm>
             <Button variant="contained" type='submit' onClick={this.props.addNewColor} style={{backgroundColor: this.props.currentColor}}>Add Color</Button>
             <Button variant="contained" color='secondary'>Clear Palette</Button>
