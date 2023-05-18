@@ -85,16 +85,20 @@ export default function NewPalette(props) {
     }
 
     const addNewColor = () => {
-        setColors([...colors, currentColor])
+      const newColor = {
+        color: currentColor,
+        name: newName
+      }
+        setColors([...colors, newColor])
         addNewName({newName})
     }
 
     const addNewName = (event) => {
-      setNewName({newName: event.target.val})
+      setNewName({newName: event.target})
     }
 
     useEffect(() => {
-        console.log(colors, newName)
+        console.log(colors)
     }, [colors])
 
 
@@ -138,13 +142,13 @@ export default function NewPalette(props) {
           handleChangeComplete={(newColor) => handleChangeComplete(newColor)} 
           addNewColor={addNewColor} 
           addNewName={(newName) => addNewName(newName)}
-
+          newName={newName}
         />
         <Divider />
       </Drawer>
       <Main open={open}>
             {colors.map(color => (
-                <DraggableColorBox color={color} />
+                <DraggableColorBox color={color.color} newName={color.name} />
             ))}
       </Main>
     </Box>
