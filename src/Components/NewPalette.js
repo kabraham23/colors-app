@@ -70,6 +70,7 @@ export default function NewPalette(props) {
     const [open, setOpen] = React.useState(false);
     const [currentColor, setCurrentColor] = React.useState('#fff');
     const [colors, setColors] = React.useState([]);
+    const [newName, setNewName] = React.useState('');
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -85,10 +86,15 @@ export default function NewPalette(props) {
 
     const addNewColor = () => {
         setColors([...colors, currentColor])
+        addNewName({newName})
+    }
+
+    const addNewName = (event) => {
+      setNewName({newName: event.target.val})
     }
 
     useEffect(() => {
-        console.log(colors)
+        console.log(colors, newName)
     }, [colors])
 
 
@@ -126,7 +132,14 @@ export default function NewPalette(props) {
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>
-        <NewColorPicker currentColor={currentColor} colors={colors} handleChangeComplete={(newColor) => handleChangeComplete(newColor)} addNewColor={addNewColor} />
+        <NewColorPicker 
+          currentColor={currentColor} 
+          colors={colors} 
+          handleChangeComplete={(newColor) => handleChangeComplete(newColor)} 
+          addNewColor={addNewColor} 
+          addNewName={(newName) => addNewName(newName)}
+
+        />
         <Divider />
       </Drawer>
       <Main open={open}>
