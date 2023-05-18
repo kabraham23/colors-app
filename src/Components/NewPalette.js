@@ -148,7 +148,7 @@ export default function NewPalette(props) {
       </Drawer>
       <Main open={open}>
             {colors.map(color => (
-                <DraggableColorBox color={color.color} newName={color.name} />
+                <DraggableColorBox color={color.color} name={color.name} />
             ))}
       </Main>
     </Box>
