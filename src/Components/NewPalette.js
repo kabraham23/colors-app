@@ -68,34 +68,19 @@ export default function NewPalette(props) {
 
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
-    const [currentColor, setCurrentColor] = React.useState('#fff');
     const [colors, setColors] = React.useState([]);
-    const [newName, setNewName] = React.useState('');
-
     const handleDrawerOpen = () => {
         setOpen(true);
     };
 
+    const handleSubmit = (newColorObject) => {
+      console.log("actually submitted properly")
+      setColors([...colors, newColorObject])
+    }
+
     const handleDrawerClose = () => {
         setOpen(false);
     };
-
-    const handleChangeComplete = (newColor) => {
-        setCurrentColor(newColor.hex)
-    }
-
-    const addNewColor = () => {
-      const newColor = {
-        color: currentColor,
-        name: newName
-      }
-        setColors([...colors, newColor])
-        addNewName({newName})
-    }
-
-    const addNewName = (event) => {
-      setNewName({newName: event.target})
-    }
 
     useEffect(() => {
         console.log(colors)
@@ -137,18 +122,14 @@ export default function NewPalette(props) {
           </IconButton>
         </DrawerHeader>
         <NewColorPicker 
-          currentColor={currentColor} 
           colors={colors} 
-          handleChangeComplete={(newColor) => handleChangeComplete(newColor)} 
-          addNewColor={addNewColor} 
-          addNewName={(newName) => addNewName(newName)}
-          newName={newName}
+          handleSubmit={(colorObject) => handleSubmit(colorObject)}
         />
         <Divider />
       </Drawer>
       <Main open={open}>
-            {colors.map(color => (
-                <DraggableColorBox color={color.color} name={color.name} />
+            {colors.map((color, i) => (
+                <DraggableColorBox key={i} color={color.color} name={color.name} />
             ))}
       </Main>
     </Box>
