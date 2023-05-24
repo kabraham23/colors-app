@@ -1,4 +1,5 @@
 import React, {useEffect} from "react";
+import { Link } from 'react-router-dom'
 import { styled, useTheme } from '@mui/material/styles';
 import NewColorPicker from "./NewColorPicker";
 import DraggableColorBox from "./DraggableColorBox";
@@ -12,6 +13,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { Button } from "@material-ui/core";
 
 
 const drawerWidth = 400;
@@ -78,10 +80,17 @@ export default function NewPalette(props) {
         setOpen(false);
     };
 
-  const handleSubmit = (newColorObject) => {
-    setColors([...colors, newColorObject])
-  }
+    const handleSubmit = (newColorObject) => {
+      setColors([...colors, newColorObject])
+    }
 
+    const savePalette = () => {
+      const newPalette = {
+        paletteName:"new test palette",
+        colors: colors
+      }
+      console.log(newPalette)
+    }
     useEffect(() => {
         console.log(colors)
     }, [colors])
@@ -90,7 +99,7 @@ export default function NewPalette(props) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" color="default" open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -101,6 +110,9 @@ export default function NewPalette(props) {
           >
             <MenuIcon />
           </IconButton>
+          <Link to='/'>
+            <Button variant="contained" color="primary" onClick={(newPalette) => savePalette(newPalette)}>Save Palette</Button>
+          </Link>
         </Toolbar>
       </AppBar>
       <Drawer

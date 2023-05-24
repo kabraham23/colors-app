@@ -11,6 +11,10 @@ const findPalette = (id) => {
   return seedColors.find((palette) => palette.id === id);
 };
 
+// const savePalette = (newPalette) => {
+//   console.log(newPalette)
+// }
+
 const PaletteWrapper = () => {
   const { id } = useParams();
   const palette = generatePalette(findPalette(id));
@@ -28,7 +32,7 @@ export default function App() {
       <div className="App">
         <>
           <Routes>
-              <Route path="palette/new" element={<NewPalette />} />
+              <Route path="palette/new" element={<NewPalette  />} />
               <Route path="/" element={<PaletteList palettes={seedColors} /> } />
               <Route path="/palette/:id" element={<PaletteWrapper />} />     
               <Route path="/palette/:id/:colorId" element={<ColorWrapper />}/>
@@ -37,3 +41,4 @@ export default function App() {
       </div>
     )
   }
+
