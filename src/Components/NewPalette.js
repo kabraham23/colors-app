@@ -84,12 +84,15 @@ export default function NewPalette(props) {
       setColors([...colors, newColorObject])
     }
 
-    const savePalette = () => {
+    const handleSave = () => {
       const newPalette = {
+        id: "new-test-palette",
         paletteName:"new test palette",
         colors: colors
       }
-      console.log(newPalette)
+
+      props.savePalette(newPalette)
+      // console.log(newPalette)
     }
     useEffect(() => {
         console.log(colors)
@@ -111,7 +114,8 @@ export default function NewPalette(props) {
             <MenuIcon />
           </IconButton>
           <Link to='/'>
-            <Button variant="contained" color="primary" onClick={(newPalette) => savePalette(newPalette)}>Save Palette</Button>
+          {/* <Button variant="contained" color="primary" onClick={(newPalette) => savePalette(newPalette)}>Save Palette</Button> */}
+          <Button variant="contained" color="primary" onClick={handleSave}>Save Palette</Button>
           </Link>
         </Toolbar>
       </AppBar>
