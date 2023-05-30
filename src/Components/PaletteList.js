@@ -50,6 +50,8 @@ class PaletteList extends Component {
               <Link to={`/palette/${palette.id}`} key={index}>
                 <MiniPalette {...palette}   />
               </Link>
+              
+             
           ))}
           </div>
         </div>

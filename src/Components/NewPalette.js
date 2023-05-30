@@ -14,6 +14,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Button } from "@material-ui/core";
+import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 
 
 const drawerWidth = 400;
@@ -71,6 +72,7 @@ export default function NewPalette(props) {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
     const [colors, setColors] = React.useState([]);
+    const [newPaletteName, setNewPaletteName] = React.useState('');
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -80,14 +82,18 @@ export default function NewPalette(props) {
         setOpen(false);
     };
 
+    const handleChange = (event) => {
+      setNewPaletteName(event.target.value)
+    }
+
     const handleSubmit = (newColorObject) => {
       setColors([...colors, newColorObject])
-    }
+    };
 
     const handleSave = () => {
       const newPalette = {
-        id: "new-test-palette",
-        paletteName:"new test palette",
+        id: newPaletteName.toLowerCase().replace(/ /g, "-"),
+        paletteName: newPaletteName,
         colors: colors
       }
       props.savePalette(newPalette)
@@ -111,9 +117,16 @@ export default function NewPalette(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Link to='/'>
-            <Button variant="contained" color="primary" onClick={handleSave}>Save Palette</Button>
-          </Link>
+          <ValidatorForm onSubmit={handleSave}>
+            <TextValidator 
+            label="Palette Name" 
+            name="newPaletteName" 
+            onChange={handleChange}
+            value={newPaletteName} />
+            <Link to='/'>
+              <Button variant="contained" color="primary" type="submit" >Save Palette</Button>
+            </Link>
+          </ValidatorForm>
         </Toolbar>
       </AppBar>
       <Drawer

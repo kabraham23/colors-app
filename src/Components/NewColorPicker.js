@@ -46,6 +46,7 @@ class NewColorPicker extends Component {
                 <TextValidator 
                     value={this.state.newColorName} 
                     onChange={this.handleChange}
+                    name='newColorName'
                     validators={["required", "isColorNameUnique", "isColorUnique"]}
                     errorMessages={["this field is required", "Color name must be unique", "Color is already used"]} 
                 />
