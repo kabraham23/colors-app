@@ -37,7 +37,7 @@ export default function App() {
       <div className="App">
         <>
           <Routes>
-              <Route path="palette/new" element={<NewPalette savePalette={savePalette} />} />
+              <Route path="palette/new" element={<NewPalette palettes={palettes} savePalette={savePalette} />} />
               <Route path="/" element={<PaletteList palettes={palettes} /> } />
               <Route path="/palette/:id" element={<PaletteWrapper />} />     
               <Route path="/palette/:id/:colorId" element={<ColorWrapper />}/>

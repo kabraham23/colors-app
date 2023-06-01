@@ -98,11 +98,16 @@ export default function NewPalette(props) {
       }
       props.savePalette(newPalette)
     }
+    ValidatorForm.addValidationRule('isPaletteNameUnique', value => 
+        props.palettes.every(
+            ({paletteName}) => paletteName.toLowerCase() !== value.toLowerCase()
+            )
+    );
     useEffect(() => {
         console.log(colors)
     }, [colors])
 
-
+    
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -122,11 +127,12 @@ export default function NewPalette(props) {
             label="Palette Name" 
             name="newPaletteName" 
             onChange={handleChange}
-            value={newPaletteName} />
-            <Link to='/'>
+            value={newPaletteName}
+            validators={["required", "isPaletteNameUnique"]}
+            errorMessages={["Enter Palette Name", "Name already used"]} />
               <Button variant="contained" color="primary" type="submit" >Save Palette</Button>
-            </Link>
           </ValidatorForm>
+          <Link to="/">Go Back</Link>
         </Toolbar>
       </AppBar>
       <Drawer
