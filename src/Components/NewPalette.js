@@ -97,12 +97,19 @@ export default function NewPalette(props) {
         colors: colors
       }
       props.savePalette(newPalette)
-    }
+    };
+
+    const removeColor = (colorName) => {
+      console.log('remove')
+      setColors(colors.filter(color => color.name !== colorName))
+    };
+
     ValidatorForm.addValidationRule('isPaletteNameUnique', value => 
         props.palettes.every(
             ({paletteName}) => paletteName.toLowerCase() !== value.toLowerCase()
             )
     );
+
     useEffect(() => {
         console.log(colors)
     }, [colors])
@@ -161,7 +168,7 @@ export default function NewPalette(props) {
       </Drawer>
       <Main open={open}>
             {colors.map((color, i) => (
-                <DraggableColorBox key={i} color={color.color} name={color.name} />
+                <DraggableColorBox key={i} color={color.color} name={color.name} handleClick={() => removeColor(color.name)} />
             ))}
       </Main>
     </Box>
