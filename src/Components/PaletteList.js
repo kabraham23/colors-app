@@ -2,34 +2,38 @@ import React, { Component } from 'react';
 import MiniPalette from './MiniPalette';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
+import { Button } from '@material-ui/core';
 
 const styles = {
   root: {
-    backgroundColor: "blue",
+    backgroundColor: "#f2c9a2",
     height: "100vh",
     display: "flex",
     alignItems: "flex-start",
-    justifyContent: "center"
+    justifyContent: "center",
+    overflow: "scroll"
   },
   container: {
-    width: "50%",
+    width: "80%",
     display: "flex",
     alignItems: "flex-start",
     flexDirection: "column",
     flexWrap: "wrap",
+    padding: "50px",
   },
   nav: {
     display: "flex",
     width: "100%",
     justifyContent: "space-between",
-    color: "white"
+    alignItems: "center",
+    color: "charcoal"
   },
   palettes: {
     boxSizing: "border-box",
     width: "100%",
     display: "grid",
-    gridTemplateColumns: "repeat(3, 30%)",
-    gridGap: "5%"
+    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+    gridGap: "5%",
   }
 }
 
@@ -42,7 +46,7 @@ class PaletteList extends Component {
           <nav className={classes.nav}>
             <h1>React Colors</h1>
             <Link to='/palette/new'>
-              <button>Create New Palette</button>
+              <Button variant='contained' color='default'>Create New Palette</Button>
             </Link>
           </nav>
           <div className={classes.palettes}>

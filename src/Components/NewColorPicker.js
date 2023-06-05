@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Typography } from "@material-ui/core";
 import { ChromePicker } from 'react-color';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import './CSS/ColorPicker.css'
 
 
 class NewColorPicker extends Component {
@@ -42,10 +43,12 @@ class NewColorPicker extends Component {
             <div className='ColorPicker'>
             <Typography variant="h4">Design Your Palette</Typography>
             <ChromePicker color={ this.state.currentColor } onChangeComplete={ this.setCurrentColor } />
-            <ValidatorForm onSubmit={this.handleSubmit}>
+            <ValidatorForm className='SubmitForm' onSubmit={this.handleSubmit}>
                 <TextValidator 
+                    label="Color Name"
                     value={this.state.newColorName} 
                     onChange={this.handleChange}
+                    variant="standard"
                     name='newColorName'
                     validators={["required", "isColorNameUnique", "isColorUnique"]}
                     errorMessages={["this field is required", "Color name must be unique", "Color is already used"]} 
