@@ -39,6 +39,7 @@ class NewColorPicker extends Component {
         this.setState({currentColor: color.hex})
     }
     render() {
+        const { clearColors } = this.props;
         return(
             <div className='ColorPicker'>
             <Typography variant="h4">Design Your Palette</Typography>
@@ -54,7 +55,7 @@ class NewColorPicker extends Component {
                     errorMessages={["this field is required", "Color name must be unique", "Color is already used"]} 
                 />
                 <Button variant="contained" type='submit' style={{backgroundColor: this.state.currentColor}}>Add Color</Button>
-                <Button variant="contained" color='secondary'>Clear Palette</Button>
+                <Button variant="contained" color='secondary' onClick={clearColors}>Clear Palette</Button>
             </ValidatorForm>
         </div>
         )

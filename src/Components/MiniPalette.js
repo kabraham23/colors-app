@@ -30,10 +30,6 @@ const styles = {
         fontSize: "1rem",
         position: "relative"
     },
-    emoji: {
-        marginLeft: "0.5rem",
-        fontSize: "1.5rem"
-    },
     miniColor: {
         height: "25%",
         width: "20%",
@@ -45,7 +41,7 @@ const styles = {
 };
 
 function MiniPalette(props){
-    const {classes, paletteName, emoji, colors} = props;
+    const {classes, paletteName, colors} = props;
     const miniColorBoxes = colors.map(color => (
         <div className={classes.miniColor} style={{backgroundColor:color.color}} key={color.name}></div>
     ))

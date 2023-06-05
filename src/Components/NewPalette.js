@@ -108,6 +108,10 @@ export default function NewPalette(props) {
     const onSortEnd = ({oldIndex, newIndex}) => 
       setColors(arrayMove(colors, oldIndex, newIndex)
       );
+
+    const clearColors = () => {
+      setColors([])
+    }
     
 
     ValidatorForm.addValidationRule('isPaletteNameUnique', value => 
@@ -176,6 +180,7 @@ export default function NewPalette(props) {
         <NewColorPicker 
           colors={colors} 
           handleSubmit={(colorObject) => handleSubmit(colorObject)}
+          clearColors={clearColors}
         />
         <Divider />
       </Drawer>
