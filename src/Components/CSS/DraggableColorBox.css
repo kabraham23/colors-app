@@ -29,3 +29,26 @@
     scale: 1.5;
     transition: all 0.3s ease-in-out;
 }
+.Nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    width: 100%;
+}
+.ValidatorForm {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    padding: 5px;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 50px;
+}
+h3 {
+    display: flex;
+    flex-basis: 220px;
+    flex-wrap: nowrap;
+    padding-left: 5px;
+}

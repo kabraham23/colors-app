@@ -16,6 +16,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Button } from "@material-ui/core";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import { arrayMove } from "react-sortable-hoc";
+import './CSS/DraggableColorBox.css';
 
 const drawerWidth = 400;
 
@@ -134,17 +135,24 @@ export default function NewPalette(props) {
           >
             <MenuIcon />
           </IconButton>
-          <ValidatorForm onSubmit={handleSave}>
+          <h3>CREATE A PALETTE</h3>
+          <div  className="Nav">
+            
+          <ValidatorForm className="ValidatorForm" onSubmit={handleSave}>
             <TextValidator 
             label="Palette Name" 
-            name="newPaletteName" 
+            name="newPaletteName"
+            variant="standard" 
             onChange={handleChange}
             value={newPaletteName}
             validators={["required", "isPaletteNameUnique"]}
             errorMessages={["Enter Palette Name", "Name already used"]} />
-              <Button variant="contained" color="primary" type="submit" >Save Palette</Button>
+              <Button variant="contained" color="primary" type="submit">Save Palette</Button>
           </ValidatorForm>
-          <Link to="/">Go Back</Link>
+          <Link to="/">
+            <Button variant="contained" color="secondary">Go Back</Button>
+            </Link>
+            </div>
         </Toolbar>
       </AppBar>
       <Drawer
