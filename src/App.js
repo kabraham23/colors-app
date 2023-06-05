@@ -8,13 +8,15 @@ import seedColors from './seedColors';
 import { generatePalette } from "./colorHelpers";
 
 export default function App() {
-  const [palettes, setPalettes] = React.useState(seedColors)
-
+  const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"))
+  const [palettes, setPalettes] = React.useState(savedPalettes || seedColors)
+  
   const findPalette = (id) => {
     return palettes.find((palette) => palette.id === id);
   };
 
-  React.useEffect(() => console.log(palettes), [palettes])
+  React.useEffect(() => console.log(palettes),
+  localStorage.setItem('palettes', JSON.stringify(palettes)))
 
   const savePalette = (newPalette) => {
     console.log(newPalette)
