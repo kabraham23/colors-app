@@ -101,7 +101,6 @@ export default function NewPalette(props) {
     };
 
     const removeColor = (colorName) => {
-      console.log('remove')
       setColors(colors.filter(color => color.name !== colorName))
     };
 
@@ -121,7 +120,6 @@ export default function NewPalette(props) {
     );
 
     useEffect(() => {
-        console.log(colors)
     }, [colors])
 
     

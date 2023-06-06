@@ -15,11 +15,10 @@ export default function App() {
     return palettes.find((palette) => palette.id === id);
   };
 
-  React.useEffect(() => console.log(palettes),
+  React.useEffect(() => 
   localStorage.setItem('palettes', JSON.stringify(palettes)))
 
   const savePalette = (newPalette) => {
-    console.log(newPalette)
     setPalettes([...palettes, newPalette])
   }
 
